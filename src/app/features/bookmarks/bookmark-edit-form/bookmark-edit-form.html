@@ -1,0 +1,38 @@
+<app-card>
+  <div class="d-flex mb-1_5 sb">
+    <div class="col sb">
+      {{ bookmark().id ? 'Edit Existing bookmark' : 'Create new bookmark' }}
+    </div>
+    <div class="col-5 text-gray">
+      Type bookmark name and url
+    </div>
+    <div class="col text-right text-gray">
+      <app-icon icon="bookmark/item" />
+    </div>
+  </div>
+  <form (submit)="$event.preventDefault()">
+    <div class="d-flex mb-1_5">
+      <app-textfield
+        class="col-4"
+        [formControl]="formData.controls['name']"
+        label="Name"
+      />
+      <app-textfield
+        class="col"
+        [formControl]="formData.controls['url']"
+        label="Url"
+      />
+    </div>
+    
+    <div class="text-right pt-1 border-t">
+      <app-button
+        class="text-right"
+        [disabled]="!formData.valid"
+        role="primary"
+        (click)="saveBookmark()"
+      >
+        {{ bookmark().id ? 'Update bookmark' : 'Create bookmark' }}
+      </app-button>
+    </div>
+  </form>
+</app-card>

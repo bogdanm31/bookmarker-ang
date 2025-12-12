@@ -1,0 +1,35 @@
+@import '../variables';
+
+// media
+@function breakpoint_infix($breakpoint) {
+  @if ($breakpoint == 'xs') {
+    @return '';
+  }
+  @return '-' + $breakpoint;
+}
+
+@mixin media_query($breakpoint: 'xs') {
+  $size: map-get($breakpointsMapping, $breakpoint);
+  @if ($breakpoint != 'xs') {
+    @media (min-width: #{$size + 'px'}) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// spacing
+@function spacer($index) {
+  @return map-get($spacers, $index);
+}
+
+@mixin gen_breakpoint_spaces($props, $multiply: 1) {
+  @each $breakpoint, $size in $colGaps {
+    @include media_query($breakpoint) {
+      @each $p in $props {
+        #{$p}: #{$size * $multiply};
+      }
+    }
+  }
+}

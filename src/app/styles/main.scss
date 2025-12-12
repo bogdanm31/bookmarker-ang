@@ -1,0 +1,161 @@
+@import "./variables";
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+:focus {
+  outline-color: $colorPrimary  !important;
+}
+
+::-webkit-scrollbar {
+  height: .5rem;
+  width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $colorGrayLighter;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $colorPrimary;
+  border-radius: .25rem;
+}
+
+html {
+  font-size: 16px;
+}
+
+body,
+html,
+#app {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  color: $colorSecondary;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+}
+
+article,
+aside,
+figcaption,
+figure,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+main {
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  width: 90%;
+  max-width: 50rem;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding-top: #{$headerHeight + 2rem};
+}
+
+h1 {
+  margin: {
+    bottom: #{spacer(1)};
+    top: #{spacer(0_25)};
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+p {
+  margin: {
+    bottom: #{spacer(0_25)};
+    top: #{spacer(0_5)};
+  }
+
+  &:first-child {
+    margin-top: 0
+  }
+}
+
+a {
+  color: $colorPrimary;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+
+  &:focus,
+  &:hover {
+    color: $colorPrimaryDark;
+  }
+}
+
+label {
+  cursor: inherit;
+  margin-bottom: 0;
+
+  &:not(:last-child) {
+    margin-right: #{spacer(1)};
+  }
+
+  +label,
+  +span {
+    vertical-align: middle;
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+  &.ui-list-style>li:before {
+    background: $colorPrimary;
+    content: "";
+    display: inline-block;
+    height: 8px;
+    margin-right: #{spacer(2)};
+    vertical-align: middle;
+    width: 8px;
+  }
+}
+
+.text-cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.disabled,
+[disabled] {
+  cursor: default;
+  outline: 0;
+  opacity: .5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+svg {
+  fill: currentColor;
+}
+
+@import './components/grid';
+@import './components/border';
+@import './components/font';
+@import './components/text';
+@import './components/spacing';

@@ -1,0 +1,8 @@
+@use "../../../styles/variables";
+@import '../../../styles/mixins/init';
+
+.card {
+  @include gen_breakpoint_spaces((padding), 1);
+  border-radius: .5rem;
+  box-shadow: 0 .125rem .25rem $colorGrayLight;
+}

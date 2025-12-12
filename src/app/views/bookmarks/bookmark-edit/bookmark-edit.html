@@ -1,0 +1,8 @@
+@if (isPending()) {
+  <p>Loading...</p>
+} @else {
+  <app-bookmark-edit-form
+    [bookmark]="bookmark()"
+    (submitForm)="updateBookmark($event)"
+  />
+}

@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center">
+  <app-icon class="col-auto text-gray" icon="bookmark/item" />
+  <div class="flex-grow">
+    <div class="sb">
+      {{ bookmark().name }}
+    </div>
+    <div>
+      <a class="body-2" [href]="bookmark().url" target="_blank">
+        {{ bookmark().url }}
+      </a>
+    </div>  
+  </div>
+  <div class="col-auto">
+    <a class="text-gray" [routerLink]="['bookmarks', bookmark().id, 'edit']">
+      <app-icon icon="actions/edit" />
+    </a>
+  </div>
+</div>

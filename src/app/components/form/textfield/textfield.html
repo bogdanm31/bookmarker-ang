@@ -1,0 +1,18 @@
+<div class="textfield">
+  <label
+    class="caption sb"
+    [class]="{
+      'text-gray': !isValidated() || formControl().valid,
+      'text-danger': isValidated() && !formControl().valid
+    }"
+  >
+    {{ label() }}
+  </label>
+  <input
+    [formControl]="formControl()"
+    (blur)="isValidated.set(true)"
+  />
+  @if (isValidated() && !formControl().valid) {
+    <div class="textfield-error caption text-danger">Field is not valid!</div>
+  }
+</div>

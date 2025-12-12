@@ -1,0 +1,17 @@
+@use '../variables';
+
+.border, .border-t, .border-b {
+  border: {
+    style: solid;
+    color: $colorGrayLighter;
+    width: 0;
+  }
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}

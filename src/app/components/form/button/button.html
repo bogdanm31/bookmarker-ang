@@ -1,0 +1,8 @@
+<button
+  [class]="{
+    'btn-primary': role() === 'primary'
+  }"
+  [disabled]="disabled()"
+>
+  <ng-content />
+</button>
