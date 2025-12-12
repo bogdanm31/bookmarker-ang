@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { RouterLink } from "@angular/router";
 
 import { BookmarkItem } from '@/utils/types/bookmark';
-import { Icon } from '@/components/icon/icon';
+import { Icon } from '@/components/ui/icon/icon';
 
 @Component({
   selector: 'app-bookmark-list-item',

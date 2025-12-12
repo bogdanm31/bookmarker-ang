@@ -7,7 +7,7 @@ import { urlPatternValidator } from '@/utils/helpers/validators';
 import { Button } from "@/components/form/button/button";
 import { Textfield } from '@/components/form/textfield/textfield';
 import { Card } from "@/components/ui/card/card";
-import { Icon } from "@/components/icon/icon";
+import { Icon } from "@/components/ui/icon/icon";
 
 @Component({
   selector: 'app-bookmark-edit-form',
