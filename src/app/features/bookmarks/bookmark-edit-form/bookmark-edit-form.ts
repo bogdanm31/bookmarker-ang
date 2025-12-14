@@ -9,6 +9,7 @@ import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms'
 
 import { BookmarkItemFormData } from '@/utils/types/bookmark';
 import { BookmarksStore } from '@/store/bookmarks';
+import { urlPatternValidator } from '@/utils/helpers/validators';
 
 import { Button } from "@/components/form/button/button";
 import { Textfield } from '@/components/form/textfield/textfield';
@@ -34,7 +35,7 @@ export class BookmarkEditForm implements OnInit {
   url = input<string>('');
   formData = new FormGroup({
     name: new FormControl(this.name(), [ Validators.required ]),
-    url: new FormControl(this.url(), [ Validators.required ])
+    url: new FormControl(this.url(), [ Validators.required, urlPatternValidator() ])
   });
   submitForm = output<BookmarkItemFormData>();
 
