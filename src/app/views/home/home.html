@@ -1,15 +1,21 @@
 @if (store.isPending()) {
-  Pending...
+  Loading...
 } @else if (store.bookmarks().length) {
-  <ul class="space-y-2">
-    @for(bookmark of store.filteredBookmarks(); track bookmark.id) {
-      <li>
-        <app-bookmark-list-item
-          [bookmark]="bookmark"
-        />
-      </li>
-    }
-  </ul>
+  @if (store.filteredBookmarks().length) {
+    <ul class="space-y-2">
+      @for(bookmark of store.filteredBookmarks(); track bookmark.id) {
+        <li>
+          <app-bookmark-list-item
+            [bookmark]="bookmark"
+          />
+        </li>
+      }
+    </ul>
+  } @else {
+    <h2>
+      Nothing was found! Try to refine your search!
+    </h2>
+  }
 } @else {
   <div class="text-center">
     <h2>

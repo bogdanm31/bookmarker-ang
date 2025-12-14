@@ -8,11 +8,15 @@ import {
   FormControl,
   ReactiveFormsModule
 } from '@angular/forms';
+
+import { Icon } from "@/components/ui/icon/icon";
+
 @Component({
   selector: 'app-textfield',
   imports: [
-    ReactiveFormsModule,
-  ],
+    Icon,
+    ReactiveFormsModule
+],
   templateUrl: './textfield.html',
   styleUrl: './textfield.scss',
 })
