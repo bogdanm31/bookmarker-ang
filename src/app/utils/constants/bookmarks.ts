@@ -1,4 +1,5 @@
 export const draftBookmark = {
+  id: null,
   name: '',
   url: '',
   date_created: '',

@@ -59,7 +59,7 @@ const BookmarksStore = signalStore(
           }
         )
     },
-    createBookmark(data: BookmarkItemFormData) {
+    createBookmark(data: BookmarkItemFormData, callback?: Function) {
       patchState(store, { isPending: true });
       return bookmarksService
         .createBookmark(data)
@@ -72,6 +72,7 @@ const BookmarksStore = signalStore(
         .subscribe(
           () => {
             patchState(store, { isPending: false });
+            callback?.();
           }
         )
     },

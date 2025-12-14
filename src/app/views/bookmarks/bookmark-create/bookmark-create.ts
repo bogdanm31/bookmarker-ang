@@ -19,6 +19,8 @@ export class BookmarkCreate {
   store = inject(BookmarksStore);
 
   createBookmark(data: BookmarkItemFormData) {
-    this.store.createBookmark(data);
+    this.store.createBookmark(data, () => {
+      this.router.navigate(['']);
+    });
   }
 }

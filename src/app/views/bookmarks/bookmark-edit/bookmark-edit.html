@@ -2,7 +2,7 @@
   <p>Loading...</p>
 } @else {
   <app-bookmark-edit-form
-    [bookmarkId]="bookmarkId()"
+    [bookmarkId]="bookmark().id!"
     [name]="bookmark().name"
     [url]="bookmark().url"
     (submitForm)="updateBookmark($event)"

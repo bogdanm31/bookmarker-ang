@@ -23,22 +23,18 @@ import { draftBookmark } from '@/utils/constants/bookmarks';
 export class BookmarkEdit {
   constructor() {
     this.store
-      .getBookmark(this.bookmarkId(), (response: any) => {
+      .getBookmark(this.bookmark().id!, (response: any) => {
         this.bookmark.set(response);
       })
   }
 
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-  bookmarkId = signal(this.activatedRoute.snapshot.params['id']);
   store = inject(BookmarksStore);
-  bookmark = signal<BookmarkItem>({
-    id: this.bookmarkId(),
-    ...draftBookmark
-  });
+  bookmark = signal<BookmarkItem>({...draftBookmark, id: this.activatedRoute.snapshot.params['id']});
   
   updateBookmark(data: BookmarkItemFormData) {
-    this.store.updateBookmark(this.bookmarkId(), {...this.bookmark(), ...data}, () => {
+    this.store.updateBookmark(this.bookmark().id!, {...this.bookmark(), ...data}, () => {
       this.router.navigate(['/']);
     });
   }
