@@ -1,0 +1,11 @@
+ul.notifications {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  width: 80%;
+  max-width: 16rem;
+
+  li {
+    border-radius: .5rem;
+  }
+}

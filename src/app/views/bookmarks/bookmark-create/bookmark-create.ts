@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { generateDate } from '@/utils/helpers/date';
-import { BookmarksService } from '@/services/bookmarks';
+import { BookmarksStore } from '@/store/bookmarks';
+import { BookmarkItemFormData } from '@/utils/types/bookmark';
 
 import { BookmarkEditForm } from "@/features/bookmarks/bookmark-edit-form/bookmark-edit-form";
 
@@ -16,20 +16,9 @@ import { BookmarkEditForm } from "@/features/bookmarks/bookmark-edit-form/bookma
 })
 export class BookmarkCreate {
   router = inject(Router);
-  bookmarksService = inject(BookmarksService);
+  store = inject(BookmarksStore);
 
-  createBookmark(data: any) {
-    let { url } = data;
-    if (!url.match(/http(s):\/\/.+/)) {
-      url = `https://${url}`;
-    }
-    this.bookmarksService.createBookmark({
-      name: data.name,
-      url,
-      date_created: generateDate(),
-      last_updated: null
-    }).subscribe(response => {
-      this.router.navigate(['/']);
-    });
+  createBookmark(data: BookmarkItemFormData) {
+    this.store.createBookmark(data);
   }
 }

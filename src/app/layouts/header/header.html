@@ -7,7 +7,13 @@
     </h1>
     
     <div class="d-flex">
-      <!-- <mat-icon aria-hidden="false" aria-label="Search icon" fontIcon="search" /> -->
+      <app-textfield
+        [border]="'white'"
+        [color]="'white'"
+        [model]="query"
+        name="query"
+        placeholder="Filter bookmarks..."
+      />
     </div>
     
     <a

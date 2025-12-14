@@ -15,3 +15,9 @@
 .border-b {
   border-bottom-width: 1px;
 }
+
+@each $name, $value in $colors {
+  .border-#{$name} {
+    border-color: $value;
+  }
+}

@@ -1,10 +1,18 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  inject,
+  signal
+} from '@angular/core';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
 
-import { BookmarksService } from '@/services/bookmarks';
 import { BookmarkItem, BookmarkItemFormData } from '@/utils/types/bookmark';
+import { BookmarksStore } from '@/store/bookmarks';
+
 import { BookmarkEditForm } from "@/features/bookmarks/bookmark-edit-form/bookmark-edit-form";
-import { generateDate } from '@/utils/helpers/date';
+import { draftBookmark } from '@/utils/constants/bookmarks';
 
 @Component({
   selector: 'app-bookmark-edit',
@@ -12,45 +20,26 @@ import { generateDate } from '@/utils/helpers/date';
   templateUrl: './bookmark-edit.html',
   styleUrl: './bookmark-edit.scss',
 })
-export class BookmarkEdit implements OnInit {
-  router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
-  isPending = signal<boolean>(false);
-  bookmarksService = inject(BookmarksService);
-  bookmark = signal<BookmarkItem>({
-    id: this.activatedRoute.snapshot.params['id'],
-    name: '',
-    url: '',
-    date_created: '',
-    last_updated: ''
-  });
-
-  updateBookmark(data: BookmarkItemFormData) {
-    if (this.isPending()) {
-      return;
-    }
-    this.isPending.set(true);
-    const { id, date_created } = this.bookmark();
-    const last_updated = generateDate();
-    this.bookmarksService
-      .updateBookmark(id!, {
-        ...data,
-        date_created,
-        last_updated
+export class BookmarkEdit {
+  constructor() {
+    this.store
+      .getBookmark(this.bookmarkId(), (response: any) => {
+        this.bookmark.set(response);
       })
-      .subscribe(() => {
-        this.isPending.set(false);
-        this.router.navigate(['/']);
-      });
   }
 
-  ngOnInit(): void {
-    this.isPending.set(true);
-    this.bookmarksService
-      .getBookmark(this.bookmark().id!)
-      .subscribe(response => {
-        this.bookmark.set(response as BookmarkItem);
-        this.isPending.set(false);
-      });
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  bookmarkId = signal(this.activatedRoute.snapshot.params['id']);
+  store = inject(BookmarksStore);
+  bookmark = signal<BookmarkItem>({
+    id: this.bookmarkId(),
+    ...draftBookmark
+  });
+  
+  updateBookmark(data: BookmarkItemFormData) {
+    this.store.updateBookmark(this.bookmarkId(), {...this.bookmark(), ...data}, () => {
+      this.router.navigate(['/']);
+    });
   }
 }

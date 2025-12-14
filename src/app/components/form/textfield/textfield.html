@@ -1,18 +1,29 @@
 <div class="textfield">
-  <label
-    class="caption sb"
-    [class]="{
-      'text-gray': !isValidated() || formControl().valid,
-      'text-danger': isValidated() && !formControl().valid
-    }"
-  >
-    {{ label() }}
-  </label>
-  <input
-    [formControl]="formControl()"
-    (blur)="isValidated.set(true)"
-  />
-  @if (isValidated() && !formControl().valid) {
+  @if(prefix()) {
+    <div class="textfield-prefix">
+      
+    </div>
+  }
+  <div class="textfield-input">
+    @if (label()) {
+      <label
+        class="sb text-gray"
+        [class]="{
+          floating: !!model().value.length,
+        }"
+      >
+        {{ label() }}
+      </label>
+    }
+    <input
+      [class]="`border-${isValid() ? border() || 'gray' : 'danger'}${color() ? ' text-' + color() : ''}`"
+      [formControl]="model()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      (blur)="isValidated.set(true)"
+    />
+  </div>
+  @if (!isValid()) {
     <div class="textfield-error caption text-danger">Field is not valid!</div>
   }
 </div>

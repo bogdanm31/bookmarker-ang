@@ -1,46 +1,44 @@
-@import "../../../styles/variables";
+@import '../../../styles/variables';
 
 .textfield {
-  position: relative;
-  background-color: $colorWhite;
-  border: {
-    width: 1px;
-    style: solid;
-    color: $colorGray;
-    radius: .5rem;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
+  .textfield-input {
+    position: relative;
+    flex-grow: 1;
+  }
   label {
     background-color: inherit;
     position: absolute;
-    left: 1rem;
-    top: -.5rem;
+    left: .125rem;
+    top: .75rem;
     margin: 0;
-    padding: {
-      left: .25rem;
-      right: .25rem;
-    };
     transition: all .3s;
+    z-index: -1;
 
-    &:has(+ input:focus) {
-      padding: {
-        left: .5rem;
-        right: .5rem;
-      }
+    &:has(+ input:focus), &.floating {
+      font-size: .75rem;
+      top: -.5rem;
     }
   }
 
   input {
-    flex-grow: 1;
-    border: 0;
-    padding: .75rem .5rem;
     background-color: transparent;
+    border: {
+      width: 0 0 1px;
+      style: solid;
+    }
+    padding: 1rem .125rem .5rem;
+    width: 100%;
 
     &:focus {
       outline: 0;
+    }
+
+    &::placeholder {
+      color: inherit;
     }
   }
 

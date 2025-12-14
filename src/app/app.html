@@ -1,4 +1,7 @@
 <app-header />
 <main>
   <router-outlet />
+  @if (store.notifications().length) {
+    <app-notifications />
+  }
 </main>

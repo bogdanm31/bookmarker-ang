@@ -6,4 +6,4 @@ export type BookmarkItem = {
   last_updated: string | null;
 };
 
-export type BookmarkItemFormData = Pick<BookmarkItem, 'id' | 'name' | 'url'>;
+export type BookmarkItemFormData = Pick<BookmarkItem, 'name' | 'url'>;

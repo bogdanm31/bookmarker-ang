@@ -2,6 +2,9 @@
 @import "../../styles/mixins/init";
 
 header {
+  position: absolute;
+  left: 0;
+  right: 0;
   background-color: $colorPrimary;
   color: $colorWhite;
   height: #{$headerHeight};
@@ -9,6 +12,7 @@ header {
     left: #{spacer(1)};
     right: #{spacer(1)};
   }
+  z-index: 10;
 
   nav {
     height: 100%;
@@ -26,10 +30,6 @@ header {
   }
 
   @include media_query('lg') {
-    position: absolute;
-    left: 0;
-    right: 0;
-
     padding: {
       left: #{spacer(2_5)};
       right: #{spacer(2_5)};

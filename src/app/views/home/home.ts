@@ -1,22 +1,23 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
 
-import { BookmarkListItem } from "@/features/bookmarks/bookmark-list-item/bookmark-list-item";
-import { BookmarksService } from '@/services/bookmarks';
-import { BookmarkItem } from '@/utils/types/bookmark';
+import { BookmarksStore } from '@/store/bookmarks';
+import { BookmarkListItem } from '@/features/bookmarks/bookmark-list-item/bookmark-list-item';
 
 @Component({
   selector: 'app-home',
   imports: [
     BookmarkListItem,
     RouterLink
-],
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
+  providers: [
+    
+  ]
 })
 export class Home implements OnInit {
-  bookmarksService = inject(BookmarksService);
-  bookmarks = signal<BookmarkItem[]>([]);
+  store = inject(BookmarksStore);
 
   checkCreatedDay(created: string) {
     const today = new Date();
@@ -35,9 +36,6 @@ export class Home implements OnInit {
   }
 
   ngOnInit() {
-    this.bookmarksService.getBookmarks()
-      .subscribe(response => {
-        this.bookmarks.set(response);
-      })
+    this.store.getAll();
   }
 }

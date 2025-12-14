@@ -1,6 +1,8 @@
-@if (bookmarks().length) {
+@if (store.isPending()) {
+  Pending...
+} @else if (store.bookmarks().length) {
   <ul class="space-y-2">
-    @for(bookmark of bookmarks(); track bookmark.id) {
+    @for(bookmark of store.filteredBookmarks(); track bookmark.id) {
       <li>
         <app-bookmark-list-item
           [bookmark]="bookmark"

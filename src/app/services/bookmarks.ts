@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 
-import { BookmarkItem } from '@/utils/types/bookmark';
+import { BookmarkItem, BookmarkItemFormData } from '@/utils/types/bookmark';
+import { generateDate } from '@/utils/helpers/datetime';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,17 @@ export class BookmarksService {
     return this.http.get<BookmarkItem>(`${this.baseUrl}/bookmarks/${id}`);
   }
 
-  createBookmark(data: Omit<BookmarkItem, 'id'>) {
-    return this.http.post(`${this.baseUrl}/bookmarks`, data);
+  createBookmark(data: BookmarkItemFormData) {
+    let { name, url } = data;
+    if (!url.match(/http(s):\/\/.+/)) {
+      url = `https://${url}`;
+    }
+    return this.http.post(`${this.baseUrl}/bookmarks`, {
+      name,
+      url,
+      date_created: generateDate(),
+      last_updated: null
+    });
   }
 
   updateBookmark(id: string, data: Omit<BookmarkItem, 'id'>) {

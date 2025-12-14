@@ -1,0 +1,7 @@
+@use '../variables';
+
+@each $name, $value in $colors {
+  .bg-#{$name} {
+    background-color: $value;
+  }
+}

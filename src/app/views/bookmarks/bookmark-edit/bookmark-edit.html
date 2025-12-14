@@ -1,8 +1,10 @@
-@if (isPending()) {
+@if (store.isPending()) {
   <p>Loading...</p>
 } @else {
   <app-bookmark-edit-form
-    [bookmark]="bookmark()"
+    [bookmarkId]="bookmarkId()"
+    [name]="bookmark().name"
+    [url]="bookmark().url"
     (submitForm)="updateBookmark($event)"
   />
 }

@@ -1,0 +1,7 @@
+<ul class="notifications">
+  @for(notif of store.notifications(); track notif.id) {
+    <li [class]="`p-0_5 space-y-0_25 body2 sb text-white bg-${notif.type}`">
+      {{ notif.message }}
+    </li>
+  }
+</ul>

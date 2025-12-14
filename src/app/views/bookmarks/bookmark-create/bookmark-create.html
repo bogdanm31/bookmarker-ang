@@ -1,3 +1,7 @@
-<app-bookmark-edit-form
-  (submitForm)="createBookmark($event)"
-/>
+@if(store.isPending()) {
+  <p>Loading...</p>
+} @else {
+  <app-bookmark-edit-form
+    (submitForm)="createBookmark($event)"
+  />
+}
