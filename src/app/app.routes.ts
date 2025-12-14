@@ -18,4 +18,9 @@ export const routes: Routes = [{
   loadComponent: () => import('./views/bookmarks/bookmark-edit/bookmark-edit').then(
     r => r.BookmarkEdit
   )
+}, {
+  path: '**',
+  loadComponent: () => import('./views/errors/page-404/page-404').then(
+    r => r.Page404
+  )
 }];
