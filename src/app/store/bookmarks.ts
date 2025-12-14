@@ -1,12 +1,18 @@
 import { inject } from "@angular/core";
-import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState
+} from "@ngrx/signals";
+import { catchError, of } from "rxjs";
 
 import { BookmarksService } from "@/services/bookmarks";
 import { BookmarkItemFormData } from "@/utils/types/bookmark";
-import { Notification, NotificationType } from "@/utils/types/store";
+import { NotificationType } from "@/utils/types/store";
 import { initialState } from "@/utils/constants/store";
 import { randomString } from "@/utils/helpers/notifications";
-import { catchError, of } from "rxjs";
 
 const BookmarksStore = signalStore(
   {providedIn: 'root'},

@@ -27,6 +27,7 @@
     <div class="text-right pt-1 border-t">
       <app-button
         class="text-right"
+        [disabled]="!formData.valid"
         role="primary"
         (click)="saveBookmark()"
       >

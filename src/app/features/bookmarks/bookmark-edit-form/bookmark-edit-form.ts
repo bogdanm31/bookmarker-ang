@@ -34,12 +34,15 @@ export class BookmarkEditForm implements OnInit {
   name = input<string>('');
   url = input<string>('');
   formData = new FormGroup({
-    name: new FormControl(this.name(), [ Validators.required ]),
-    url: new FormControl(this.url(), [ Validators.required, urlPatternValidator() ])
+    name: new FormControl('', [ Validators.required ]),
+    url: new FormControl('', [ Validators.required, urlPatternValidator() ])
   });
   submitForm = output<BookmarkItemFormData>();
 
   saveBookmark() {
+    if (!this.formData.valid) {
+      return;
+    }
     this.submitForm.emit(this.formData.value as BookmarkItemFormData);
   }
 
