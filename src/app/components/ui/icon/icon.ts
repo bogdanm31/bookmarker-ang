@@ -8,5 +8,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
   styleUrl: './icon.scss',
 })
 export class Icon {
+  className = input<string>();
   icon = input.required<string>();
 }

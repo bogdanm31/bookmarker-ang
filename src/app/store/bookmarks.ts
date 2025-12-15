@@ -113,6 +113,26 @@ const BookmarksStore = signalStore(
             callback();
           }
         )
+    },
+    deleteBookmark(id: string) {
+      bookmarksService
+        .deleteBookmark(id)
+        .pipe(
+          catchError(error => {
+            this.addNotification(error.message || 'Some error happened!', NotificationType.Error);
+            return of();
+          })
+        )
+        .subscribe(
+          () => {
+            patchState(store, (state) => ({
+              ...state,
+              bookmarks: state.bookmarks.filter(
+                b => b.id !== id
+              )
+            }));
+          }
+        )
     }
   }))
 );

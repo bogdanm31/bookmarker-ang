@@ -7,6 +7,7 @@
         <li>
           <app-bookmark-list-item
             [bookmark]="bookmark"
+            (deleteHandler)="idPendingDeletion.set(bookmark.id!)"
           />
         </li>
       }
@@ -15,6 +16,12 @@
     <h2>
       Nothing was found! Try to refine your search!
     </h2>
+  }
+  @if(idPendingDeletion()) {
+    <app-bookmark-delete-modal
+      (cancelDeleteHandler)="idPendingDeletion.set(undefined)"
+      (confirmDeleteHandler)="deleteBookmark()"
+    />
   }
 } @else {
   <div class="text-center">

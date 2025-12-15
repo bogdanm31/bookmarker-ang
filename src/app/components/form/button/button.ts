@@ -1,4 +1,10 @@
-import { Component, input } from '@angular/core';
+import { ButtonRole } from '@/utils/types/ui';
+
+import {
+  Component,
+  input,
+  output
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,6 +13,14 @@ import { Component, input } from '@angular/core';
   styleUrl: './button.scss',
 })
 export class Button {
-  role = input<'primary' | undefined>();
+  clickHandler = output();
   disabled = input<boolean>();
+  role = input<ButtonRole>();
+
+  handleClick() {
+    if (this.disabled()) {
+      return;
+    }
+    this.clickHandler.emit();
+  }
 }

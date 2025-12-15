@@ -29,7 +29,7 @@
         class="text-right"
         [disabled]="!formData.valid"
         role="primary"
-        (click)="saveBookmark()"
+        (clickHandler)="saveBookmark()"
       >
         {{ bookmarkId() ? 'Update bookmark' : 'Create bookmark' }}
       </app-button>

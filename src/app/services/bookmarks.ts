@@ -36,4 +36,8 @@ export class BookmarksService {
   updateBookmark(id: string, data: Omit<BookmarkItem, 'id'>) {
     return this.http.put(`${this.baseUrl}/bookmarks/${id}`, data);
   }
+
+  deleteBookmark(id: string) {
+    return this.http.delete(`${this.baseUrl}/bookmarks/${id}`);
+  }
 }

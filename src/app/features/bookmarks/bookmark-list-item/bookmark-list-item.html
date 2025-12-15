@@ -11,6 +11,12 @@
     </div>  
   </div>
   <div class="col-auto">
+    <app-button
+      role="link"
+      (clickHandler)="deleteHandler.emit()"
+    >
+      <app-icon icon="actions/delete" />
+    </app-button>
     <a class="text-gray" [routerLink]="['bookmarks', bookmark().id, 'edit']">
       <app-icon icon="actions/edit" />
     </a>

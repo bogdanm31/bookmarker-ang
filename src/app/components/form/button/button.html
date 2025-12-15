@@ -1,8 +1,11 @@
 <button
   [class]="{
-    'btn-primary': role() === 'primary'
+    'bg-primary': role() === 'primary',
+    'bg-secondary': role() === 'secondary',
+    'btn-link': role() === 'link'
   }"
   [disabled]="disabled()"
+  (click)="handleClick()"
 >
   <ng-content />
 </button>

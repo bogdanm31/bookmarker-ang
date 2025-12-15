@@ -1,7 +1,6 @@
 @import "../../../styles/variables";
 
 button {
-  background-color: $colorSecondary;
   border: {
     width: 0;
     radius: .5rem;
@@ -14,7 +13,8 @@ button {
   }
   padding: .5rem 1.25rem;
 
-  &.btn-primary {
-    background-color: $colorPrimary;
+  &.btn-link {
+    background-color: transparent;
+    padding: .5rem;
   }
 }

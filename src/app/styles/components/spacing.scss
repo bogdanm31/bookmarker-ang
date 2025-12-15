@@ -1,4 +1,4 @@
-@use '../variables';
+@import '../variables';
 
 // mixins
 @function spacer($index) {
@@ -61,6 +61,12 @@ $prop in (m: margin, p: padding) {
       .space#{$infix}-y-#{$index} {
         > :not(:last-child) {
           margin-bottom: $size;
+        }
+      }
+
+      .space#{$infix}-x-#{$index} {
+        > :not(:last-child) {
+          margin-right: $size;
         }
       }
     }

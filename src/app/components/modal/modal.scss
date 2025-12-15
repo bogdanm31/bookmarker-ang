@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+@import '../../styles/mixins/init';
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 6rem;
+  z-index: 10;
+
+  .modal-backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba($colorBlack, .5);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .modal-content {
+    @include gen_breakpoint_spaces((padding-left, padding-right), 2);
+    position: relative;
+    background-color: $colorWhite;
+    border-radius: 1rem;
+    width: 48rem;
+    max-width: 96%;
+    margin: {
+      left: auto;
+      right: auto;
+    };
+    z-index: 1;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .modal-header, .modal-footer {
+      @include gen_breakpoint_spaces((padding-top, padding-bottom), 1);
+    }
+
+    .modal-body {
+      @include gen_breakpoint_spaces((padding-top, padding-bottom), .5);
+    }
+  }
+}

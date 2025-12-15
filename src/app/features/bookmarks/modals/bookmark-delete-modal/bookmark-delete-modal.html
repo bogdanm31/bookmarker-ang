@@ -1,0 +1,8 @@
+<app-modal
+  title="Please confirm bookmark deletion"
+  (closeHandler)="cancelDeleteHandler.emit()"
+  (okHandler)="confirmDeleteHandler.emit()"
+>
+  <div class="body1 sb text-center">Are you sure you want to delete this bookmark?</div>
+  <div class="text-warning sb text-center">Once you do this, there is no way back.</div>
+</app-modal>

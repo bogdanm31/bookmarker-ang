@@ -1,5 +1,5 @@
-@use '../variables';
-@use '../mixins/init';
+@import '../variables';
+@import '../mixins/init';
 
 // mixins
 @function font_size($name) {
