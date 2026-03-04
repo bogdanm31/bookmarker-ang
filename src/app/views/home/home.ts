@@ -7,16 +7,19 @@ import {
 import { RouterLink } from "@angular/router";
 
 import { BookmarksStore } from '@/store/bookmarks';
+import { FilterPipe } from '@/pipes/filter-pipe';
+
 import { BookmarkListItem } from '@/features/bookmarks/bookmark-list-item/bookmark-list-item';
 import { BookmarkDeleteModal } from "@/features/bookmarks/modals/bookmark-delete-modal/bookmark-delete-modal";
 
 @Component({
   selector: 'app-home',
   imports: [
-    BookmarkListItem,
     RouterLink,
-    BookmarkDeleteModal
-],
+    BookmarkListItem,
+    BookmarkDeleteModal,
+    FilterPipe
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

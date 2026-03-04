@@ -2,7 +2,6 @@ import { inject } from "@angular/core";
 import {
   patchState,
   signalStore,
-  withComputed,
   withMethods,
   withState
 } from "@ngrx/signals";
@@ -17,15 +16,6 @@ import { randomString } from "@/utils/helpers/notifications";
 const BookmarksStore = signalStore(
   {providedIn: 'root'},
   withState(initialState),
-  withComputed((store) => ({
-    filteredBookmarks() {
-      return store.bookmarks().filter(
-        bookmark => bookmark.name
-          .toLowerCase()
-          .includes(store.query().toLowerCase())
-      )
-    }
-  })),
   withMethods((store, bookmarksService = inject(BookmarksService)) => ({
     updateQuery(query: string) {
       patchState(store, { query });

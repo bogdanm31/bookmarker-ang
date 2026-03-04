@@ -1,22 +1,22 @@
 @if (store.isPending()) {
   Loading...
 } @else if (store.bookmarks().length) {
-  @if (store.filteredBookmarks().length) {
-    <ul class="space-y-2">
-      @for(bookmark of store.filteredBookmarks(); track bookmark.id) {
-        <li>
-          <app-bookmark-list-item
-            [bookmark]="bookmark"
-            (deleteHandler)="idPendingDeletion.set(bookmark.id!)"
-          />
-        </li>
-      }
-    </ul>
-  } @else {
-    <h2>
-      Nothing was found! Try to refine your search!
-    </h2>
-  }
+  <ul class="space-y-2">
+    @for(bookmark of store.bookmarks() | filter:store.query(); track bookmark.id) {
+      <li>
+        <app-bookmark-list-item
+          [bookmark]="bookmark"
+          (deleteHandler)="idPendingDeletion.set(bookmark.id!)"
+        />
+      </li>
+    } @empty {
+      <li>
+        <h2>
+          Nothing was found! Try to refine your search!
+        </h2>
+      </li>
+    }
+  </ul>
   @if(idPendingDeletion()) {
     <app-bookmark-delete-modal
       (cancelDeleteHandler)="idPendingDeletion.set(undefined)"
